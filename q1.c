@@ -1,27 +1,21 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<string.h>
 
-void reverseString(char str[], int start, int end) {
-    if (start >= end) {
-        return;
-    }
-    
-    char temp = str[start];
-    str[start] = str[end];
-    str[end] = temp;
-    
-    reverseString(str, start + 1, end - 1);
+void password(char sentence[50], int end, int start){
+	if(start >= end){
+		return;
+	}
+	char temp = sentence[end - 1];
+	sentence[end - 1] = sentence[start];
+	sentence[start] = temp;
+	
+	password(sentence, end - 1, start + 1);
 }
 
-void main() {
-    char str[100];
-    
-    printf("Enter a sentence: ");
-    scanf("%[^\n]", str);
-    
-    int len = strlen(str);
-    reverseString(str, 0, len - 1);
-    
-    printf("%s\n", str);
-    
+void main(){
+	char sentence[50];
+	printf("Enter a sentence: ");
+	scanf("%[^\n]", &sentence);
+	password(sentence, strlen(sentence), 0);
+	printf("%s", sentence);
 }
